@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petshop.mapper.PetMapper">
+    <insert id="insertPet" parameterType="com.petshop.domain.Pet">
+        INSERT INTO pet (name, type, quantity, price, userId, accessoryId, deleted, updatedBy, updatedAt)
+          VALUES (#{pet.name}, #{pet.type}, #{pet.quantity}, #{pet.price}, #{pet.userId}, #{pet.accessoryId}, #{pet.deleted}, #{pet.updatedBy}, #{pet.updatedAt})
+    </insert>
+    <update id="updatePet" parameterType="com.petshop.domain.Pet">
+        UPDATE pet SET name=#{pet.name}, type=#{pet.type}, quantity=#{pet.quantity},
+                        userId=#{pet.userId}, accessoryId=#{pet.accessoryId},
+                        deleted=#{pet.deleted}, updatedBy=#{pet.updatedBy}, updatedAt=#{pet.updatedAt}
+                   WHERE petId = #{pet.petId}
+    </update>
+    <select id="findPetById" resultType="com.petshop.domain.Pet">
+        SELECT * FROM pet WHERE petId=#{petId}
+    </select>
+    <select id="findPetByUserId" resultType="com.petshop.domain.Pet">
+        SELECT * FROM pet WHERE userId=#{userId}
+    </select>
+    <update id="deletePet">
+      UPDATE pet set deleted=1 WHERE petId=#{petId}
+    </update>
+</mapper>

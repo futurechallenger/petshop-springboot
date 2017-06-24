@@ -10,6 +10,10 @@ public class Pet {
     private int quantity;
     private float price;
     private int userId;
+     private int accesoryId;
+    private int deleted;
+    private int updatedBy;
+    private double updatedAt;
 
     public int getPetId() {
         return petId;
@@ -87,13 +91,10 @@ public class Pet {
         return updatedAt;
     }
 
-    public void setUpdatedAt(int updatedAt) {
+    public void setUpdatedAt(Double updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    private int accesoryId;
-    private int deleted;
-    private int updatedBy;
-    private int updatedAt;
+   
 
 }

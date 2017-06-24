@@ -11,6 +11,8 @@ public class User implements Serializable {
     private int userId;
     private String userName;
     private String password;
+    private int updatedBy;
+    private double updatedAt;
 
     public int getUserId() {
         return userId;
@@ -35,5 +37,20 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-}
 
+    public void setUpdatedBy(int updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public int getUpdatedBy() {
+        return this.updatedBy;
+    }
+
+    public void setUpdatedAt(double updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public double getUpdatedAt() {
+        return this.updatedAt;
+    }
+}

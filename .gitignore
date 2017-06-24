@@ -22,3 +22,10 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+#maven
+mvnw
+mvnw.cmd
+
+#VSCode
+.vscode
