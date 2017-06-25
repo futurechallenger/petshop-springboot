@@ -6,6 +6,7 @@ import com.petshop.utils.Constants;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.petshop.domain.ResultInfo;
@@ -22,9 +23,11 @@ public class PetController {
     @Autowired
     private PetMapper petMapper;
 
+    // private final Logger logger = Loggerfa
+
     @RequestMapping(value = "/pet/{id}")
     public ResultInfo<Pet> getPetById(@PathVariable("id") int petId) {
-        ResultInfo<Pet> resultInfo = new ResultInfo<Pet>(Constants.Code.DONE, Constants.Message.SUCCESS_MESSAGE, null);
+        ResultInfo<Pet> resultInfo = new ResultInfo<Pet>(Constants.Code.DONE, Constants.Message.SUCCESS, null);
         try {
             Pet pet = petMapper.findPetById(petId);
             resultInfo.setData(pet);
@@ -32,45 +35,63 @@ public class PetController {
         } catch (Exception e) {
             e.printStackTrace();
             resultInfo.setCode(Constants.Code.GENERAL_ERROR);
-            resultInfo.setMessage(Constants.Message.FAIL_MESSAGE);
+            resultInfo.setMessage(Constants.Message.FAIL);
             return resultInfo;
         }
     }
 
     @RequestMapping(value = "pet/user/{id}")
-    public List<Pet> getPetsByUserId(@PathVariable("id") int userId) {
-        return petMapper.findPetByUserId(userId);
+    public ResultInfo<List<Pet>> getPetsByUserId(@PathVariable("id") int userId) {
+        ResultInfo<List<Pet>> resultInfo = new ResultInfo<List<Pet>>(Constants.Code.DONE, Constants.Message.SUCCESS,
+                null);
+        try {
+            List<Pet> data = petMapper.findPetByUserId(userId);
+            resultInfo.setData(data);
+            return resultInfo;
+        } catch (Exception e) {
+            resultInfo.setCode(Constants.Code.GENERAL_ERROR);
+            resultInfo.setMessage(Constants.Message.FAIL);
+            return resultInfo;
+        }
     }
 
     @RequestMapping(value = "pet/insert", method = POST)
-    public ResultInfo<Pet> insertPet(Pet pet) {
-        ResultInfo<Pet> result = new ResultInfo<Pet>(0, Constants.Message.SUCCESS_MESSAGE, null);
+    public ResultInfo<Pet> insertPet(@RequestBody Pet pet) {
+        ResultInfo<Pet> result = new ResultInfo<Pet>(0, Constants.Message.SUCCESS, null);
         try {
             petMapper.insertPet(pet);
             return result;
         } catch (Exception e) {
             result.setCode(Constants.Code.GENERAL_ERROR);
-            result.setMessage(Constants.Message.FAIL_MESSAGE);
+            result.setMessage(Constants.Message.FAIL);
         }
         return result;
     }
 
     @RequestMapping(value = "pet/update", method = POST)
-    public ResultInfo<Pet> updatePet(Pet pet) {
-        ResultInfo<Pet> result = new ResultInfo<Pet>(0, Constants.Message.SUCCESS_MESSAGE, null);
+    public ResultInfo<Pet> updatePet(@RequestBody Pet pet) {
+        ResultInfo<Pet> result = new ResultInfo<Pet>(Constants.Code.DONE, Constants.Message.SUCCESS, null);
         try {
             petMapper.updatePet(pet);
             return result;
 
         } catch (Exception e) {
             result.setCode(Constants.Code.GENERAL_ERROR);
-            result.setMessage(Constants.Message.FAIL_MESSAGE);
+            result.setMessage(Constants.Message.FAIL);
         }
         return result;
     }
 
     @RequestMapping(value = "pet/{id}/delete", method = POST)
-    public void deletePet(int petId) {
-        petMapper.deletePet(petId);
+    public ResultInfo<Pet> deletePet(int petId) {
+        ResultInfo<Pet> resultInfo = new ResultInfo<Pet>(Constants.Code.DONE, Constants.Message.SUCCESS, null);
+        try {
+            petMapper.deletePet(petId);
+            return resultInfo;
+        } catch (Exception e) {
+            resultInfo.setCode(Constants.Code.GENERAL_ERROR);
+            resultInfo.setMessage(Constants.Message.FAIL);
+            return resultInfo;
+        }
     }
 }

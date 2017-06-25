@@ -8,7 +8,7 @@ public class Constants {
   }
 
   public interface Message {
-    String SUCCESS_MESSAGE = "done";
-    String FAIL_MESSAGE = "failed";
+    String SUCCESS = "done";
+    String FAIL = "failed";
   }
 }
