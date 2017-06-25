@@ -1,5 +1,7 @@
 package com.petshop.domain;
 
+import java.sql.Date;
+
 /**
  * Created by challenger on 24/6/2017.
  */
@@ -13,7 +15,7 @@ public class Pet {
      private int accesoryId;
     private int deleted;
     private int updatedBy;
-    private double updatedAt;
+    private Date updatedAt;
 
     public int getPetId() {
         return petId;
@@ -87,14 +89,11 @@ public class Pet {
         this.updatedBy = updatedBy;
     }
 
-    public int getUpdatedAt() {
-        return updatedAt;
+    public Date getUpdatedAt() {
+        return this.updatedAt;
     }
 
-    public void setUpdatedAt(Double updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-   
-
 }
