@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.petshop.mapper.UserMapper">
     <insert id="insertUser" parameterType="com.petshop.domain.User">
-      INSERT INTO user (username, password) values (#{user.username}, #{user.password})
+      INSERT INTO user (username, password) values (#{username}, #{password})
     </insert>
     <select id="findUserById" resultType="com.petshop.domain.User" parameterType="Integer">
       SELECT * FROM user WHERE userId = #{userId}
@@ -14,6 +14,6 @@
         UPDATE user SET deleted = 1 WHERE userId = #{userId}
     </update>
     <update id="updateUser" parameterType="com.petshop.domain.User">
-        UPDATE user SET username = #{user.username} password = #{user.password} WHERE userId = #{userId}
+        UPDATE user SET username = #{username} password = #{password} WHERE userId = #{userId}
     </update>
 </mapper>

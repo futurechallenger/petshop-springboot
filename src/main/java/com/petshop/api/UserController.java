@@ -54,7 +54,7 @@ public class UserController {
         try{
             userMapper.deleteUserById(userId);
             return resultInfo;
-        } catch(Exception e) +{
+        } catch(Exception e) {
             resultInfo.setCode(Constants.Code.GENERAL_ERROR);
             resultInfo.setMessage(Constants.Message.FAIL);
             return resultInfo;

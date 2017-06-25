@@ -12,7 +12,7 @@ public class Pet {
     private int quantity;
     private float price;
     private int userId;
-     private int accesoryId;
+    private int accessoryId;
     private int deleted;
     private int updatedBy;
     private Date updatedAt;
@@ -65,12 +65,12 @@ public class Pet {
         this.userId = userId;
     }
 
-    public int getAccesoryId() {
-        return accesoryId;
+    public int getAccessoryId() {
+        return this.accessoryId;
     }
 
-    public void setAccesoryId(int accesoryId) {
-        this.accesoryId = accesoryId;
+    public void setAccessoryId(int accessoryId) {
+        this.accessoryId = accessoryId;
     }
 
     public int getDeleted() {

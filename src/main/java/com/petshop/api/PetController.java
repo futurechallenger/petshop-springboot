@@ -4,6 +4,9 @@ import com.petshop.domain.Pet;
 import com.petshop.mapper.PetMapper;
 import com.petshop.utils.Constants;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +26,7 @@ public class PetController {
     @Autowired
     private PetMapper petMapper;
 
-    // private final Logger logger = Loggerfa
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/pet/{id}")
     public ResultInfo<Pet> getPetById(@PathVariable("id") int petId) {
@@ -56,12 +59,14 @@ public class PetController {
     }
 
     @RequestMapping(value = "pet/insert", method = POST)
-    public ResultInfo<Pet> insertPet(@RequestBody Pet pet) {
+    public ResultInfo<Pet> insertPet(@RequestBody Pet pet) { //TODO: Chinese character is not recognized.
+        logger.debug("request body {}", pet);
         ResultInfo<Pet> result = new ResultInfo<Pet>(0, Constants.Message.SUCCESS, null);
         try {
             petMapper.insertPet(pet);
             return result;
         } catch (Exception e) {
+            logger.error("ERROR {}", e);
             result.setCode(Constants.Code.GENERAL_ERROR);
             result.setMessage(Constants.Message.FAIL);
         }
