@@ -1,5 +1,7 @@
 ## Petshop build by Spring Boot
 
+This web app is not going to be just a demo. It will contain multi-datasource, including mysql, mongodb and redis.
+will have lots of cool stuff you will use in enterprise development.
 For now, it's all in developing. I will add more details about this soon.
 
   * Spring Boot with **MyBatis**.
