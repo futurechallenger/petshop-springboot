@@ -1,11 +1,14 @@
 package com.petshop.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * Created by challenger on 24/6/2017.
  */
-public class Pet {
+public class Pet implements Serializable {
+    private static final long serialVersionUID = -1L;
+
     private int petId;
     private String name;
     private String type;

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.petshop.mapper.PetMapper">
+    <resultMap id="baseResultMap" type="com.petshop.domain.Pet">
+        <id column="PET_ID" property="petId" jdbcType="INTEGER"/>
+        <result	column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result	column="TYPE" property="type" jdbcType="INTEGER"/>
+        <result	column="QUANTITY" property="quantity" jdbcType="INTEGER"/>
+        <result	column="PRICE" property="price" jdbcType="REAL"/>
+        <result	column="USER_ID" property="userId" jdbcType="INTEGER"/>
+        <result	column="ACCESSORY_ID" property="accessoryId" jdbcType="INTEGER"/>
+        <result	column="DELETED" property="deleted" jdbcType="SMALLINT"/>
+        <result	column="UPDATED_BY" property="updatedBy" jdbcType="INTEGER"/>
+        <result	column="UPDATED_AT" property="updatedAt" jdbcType="TIMESTAMP"/>Ï
+    </resultMap>
+    <sql id="columnList">	
+        PET_ID,
+        NAME,
+        TYPE,
+        QUANTITY,
+        PRICE,
+        USER_ID,
+        ACCESSORY_ID,
+        DELETED,
+        UPDATED_BY,
+        UPDATED_AT
+    </sql>
+    <insert id="insertPet" parameterType="com.petshop.domain.Pet">
+        INSERT INTO pet (name, type, quantity, price, userId, accessoryId, deleted, updatedBy, updatedAt)
+          VALUES (#{name}, #{type}, #{quantity}, #{price}, #{userId}, #{accessoryId}, #{deleted}, #{updatedBy}, #{updatedAt})
+    </insert>
+    <update id="updatePet" parameterType="com.petshop.domain.Pet">
+        UPDATE pet SET name=#{name}, type=#{type}, quantity=#{quantity},
+                        userId=#{userId}, accessoryId=#{accessoryId},
+                        deleted=#{deleted}, updatedBy=#{updatedBy}, updatedAt=#{updatedAt}
+                   WHERE petId = #{petId}
+    </update>
+    <select id="findPetById" resultMap="baseResultMap">
+        SELECT 
+            <include refid="columnList"/>
+        FROM pet 
+        <where>
+            petId=#{petId, jdbcType="INTEGER"}
+        </where>
+    </select>
+    <!-- <select id="findPetByUserId" resultType="com.petshop.domain.Pet">
+        SELECT * FROM pet WHERE userId=#{userId}
+    </select> -->
+    <select id="findPetsByCondition" resultMap="baseResultMap">
+        SELECT
+        <include refid="columnList"/>
+        FROM pet 
+        <where>
+            1=1
+            <if test="petId != null AND petId != ''">
+                AND petId = #{petId, jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+    <update id="deletePet">
+      UPDATE pet set deleted=1 WHERE petId=#{petId}
+    </update>
+</mapper>

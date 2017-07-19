@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.petshop.mapper.UserMapper">
+<resultMap id="baseResultMap" type="com.petshop.domain.User">
+    <id	 column="userId" property="petId" jdbcType="INTEGER"/>
+    <result	column="username" property="name" jdbcType="VARCHAR" />
+    <result	column="password" property="type" jdbcType="INTEGER" />
+    <result	column="deleted" property="quantity" jdbcType="INTEGER" />
+    <result	column="updatedBy" property="price" jdbcType="REAL" />
+    <result	column="updatedAt" property="userId" jdbcType="INTEGER" />
+</resultMap>
     <insert id="insertUser" parameterType="com.petshop.domain.User">
       INSERT INTO user (username, password) values (#{username}, #{password})
     </insert>
