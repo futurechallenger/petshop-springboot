@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class PetshopApplication
 
 fun main(args: Array<String>) {
-	runApplication<PetshopApplication>(*args)
+  runApplication<PetshopApplication>(*args)
 }
