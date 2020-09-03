@@ -1,4 +1,4 @@
-package com.petshop.core
+package com.petshop.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

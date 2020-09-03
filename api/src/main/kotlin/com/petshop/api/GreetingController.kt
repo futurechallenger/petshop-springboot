@@ -1,4 +1,4 @@
-package com.petshop.core
+package com.petshop.api
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
