@@ -17,6 +17,10 @@ dependencies {
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
   runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
   runtimeOnly("org.postgresql:postgresql")
+
+  implementation(project(":user-management"))
+  implementation(project(":utils"))
+
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
   }
