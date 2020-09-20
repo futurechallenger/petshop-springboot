@@ -1,0 +1,21 @@
+server:
+  port: 10070
+
+spring:
+  application:
+    name: petshop-server
+  datasource:
+    url: jdbc:postgresql://localhost:5432/petshop
+    platform: postgresql
+    username: postgres
+    password: 123456
+  jpa:
+    generate-ddl: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:10050/eureka
+

@@ -12,7 +12,7 @@ spring:
           lower-case-service-id: true
       routes:
       - id: shop-service
-        uri: lb://shop-service
+        uri: lb://petshop-server
         predicates:
         - Path=/shop/**
         filters:
