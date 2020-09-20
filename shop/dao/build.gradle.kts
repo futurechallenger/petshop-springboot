@@ -18,18 +18,28 @@ dependencies {
   }
 }
 
-tasks.withType<BootJar> {
-  archiveBaseName.set("dao")
-  archiveVersion.set("0.0.1")
-}
+tasks {
+  withType<Test> {
+    useJUnitPlatform()
+  }
 
-tasks.withType<Test> {
-  useJUnitPlatform()
-}
+  withType<KotlinCompile> {
+    kotlinOptions {
+      freeCompilerArgs = listOf("-Xjsr305=strict")
+      jvmTarget = "1.8"
+    }
+  }
 
-tasks.withType<KotlinCompile> {
-  kotlinOptions {
-    freeCompilerArgs = listOf("-Xjsr305=strict")
-    jvmTarget = "1.8"
+  bootJar {
+    enabled = false
+//    archiveBaseName.set("dao")
+//    archiveVersion.set("0.0.1")
+  }
+
+  jar {
+    enabled = true
+    archiveBaseName.set("dao")
+    archiveVersion.set("0.0.1")
   }
 }
+

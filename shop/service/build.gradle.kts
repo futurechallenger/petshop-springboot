@@ -8,6 +8,8 @@ plugins {
 }
 
 dependencies {
+	implementation(project(":dao"))
+
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -16,13 +18,25 @@ dependencies {
 	}
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
-}
+tasks{
+	withType<Test> {
+		useJUnitPlatform()
+	}
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
+	withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs = listOf("-Xjsr305=strict")
+			jvmTarget = "1.8"
+		}
+	}
+
+	bootJar {
+		enabled = false
+	}
+
+	jar {
+		enabled = true
+		archiveBaseName.set("dao")
+		archiveVersion.set("0.0.1")
 	}
 }
