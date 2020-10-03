@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master # branch
+#      profile: dev # 启用的profile
+      name: config
+      fail-fast: true
+      uri: http://localhost:10040
+      discovery:
+        enabled: true
+  eureka:
+    instance:
+      hostname: localhost
+      lease-renewal-interval-in-seconds: 5
+      lease-expiration-duration-in-seconds: 10
+    client:
+      service-url:
+        defaultZone: http://${spring.eureka.instance.hostname}:10050/eureka
