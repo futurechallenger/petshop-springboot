@@ -1,0 +1,30 @@
+server:
+  port: 10040
+
+spring:
+  application:
+    name: config-server
+#  profiles:
+#    active: native
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/futurechallenger/shop-config
+#        native:
+#          search-locations: ~/Documents/dev/server/petshop-springboot/config-server/native-config
+
+eureka:
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:10050/eureka
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: *

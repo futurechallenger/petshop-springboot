@@ -1,0 +1,26 @@
+server:
+  port: 10090
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    credentials:
+      access-key: foo
+      secret-key: boo
+      use-default-aws-credentials-chain: true #Pull from environment vars or ~/.aws/credentials file.
+    region:
+      static: us-east-1
+
+order:
+  queue:
+    name: order_queue
+#    url: http://localhost:4566/000000000000/order_queue
+    url: http://127.0.0.1:4566
+
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    service-url:
+#      defaultZone: http://${eureka.instance.hostname}:10050/eureka
