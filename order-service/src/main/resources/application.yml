@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: order-service
+
 server:
   port: 10090
 
@@ -18,9 +22,9 @@ order:
 #    url: http://localhost:4566/000000000000/order_queue
     url: http://127.0.0.1:4566
 
-#eureka:
-#  instance:
-#    hostname: localhost
-#  client:
-#    service-url:
-#      defaultZone: http://${eureka.instance.hostname}:10050/eureka
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:10050/eureka
