@@ -2,12 +2,9 @@ package com.petshop.orderservice.controller;
 
 import com.petshop.orderservice.dto.OrderDTO;
 import com.petshop.orderservice.service.OrderService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -17,11 +14,10 @@ public class MessageController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/order/create")
-    public ResponseEntity<?> sendMessage(/*@RequestBody Map<String, String> req*/) {
+    @RequestMapping(value = "/order/create/{count}", method = RequestMethod.POST)
+    public ResponseEntity<?> sendMessage(@PathVariable(name = "count") long itemCount) {
         try {
-
-            orderService.createOrder();
+            orderService.createOrder(itemCount);
             return ResponseEntity.ok(0);
         } catch (Exception e) {
 //            log.error("ERROR: creating order: {}", e.getMessage());
